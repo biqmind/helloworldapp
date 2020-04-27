@@ -4,12 +4,12 @@ metadata:
   creationTimestamp: null
   name: helloworld
 spec:
+  selector:
+    run: helloworld
   ports:
   - port: 80
     protocol: TCP
     targetPort: 80
-status:
-  loadBalancer: {}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -35,8 +35,6 @@ spec:
         name: helloworld
         ports:
         - containerPort: 80
-        resources: {}
-status: {}
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress
@@ -48,5 +46,5 @@ spec:
     http:
       paths:
       - backend:
-          serviceName: helloworld
+          # serviceName: helloworld
           servicePort: 80
